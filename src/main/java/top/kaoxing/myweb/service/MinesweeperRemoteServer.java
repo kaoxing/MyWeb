@@ -22,6 +22,9 @@ public class MinesweeperRemoteServer {
     @Value("${minesweeper.remoteServer.reveal}")
     private String reveal;
 
+    @Value("${minesweeper.remoteServer.agentReveal}")
+    private String agentReveal;
+
     @Value("${minesweeper.remoteServer.delete}")
     private String delete;
 
@@ -30,6 +33,8 @@ public class MinesweeperRemoteServer {
 
 
     public Map createGame(String token, int boardSize, int numOfMines) {
+
+        System.out.println(url);
 
         Map<String, Object> map = Map.of("board_size", boardSize, "num_mines", numOfMines, "token", token);
 
@@ -56,7 +61,7 @@ public class MinesweeperRemoteServer {
         //let the agent reveal a cell
         Map<String, Object> map = Map.of("token", token);
 
-        return restTemplate.postForObject(url+reveal, map, Map.class);
+        return restTemplate.postForObject(url+agentReveal, map, Map.class);
     }
 
     public void deleteGame(String token) {

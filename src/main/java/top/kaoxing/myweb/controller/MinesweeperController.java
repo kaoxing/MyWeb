@@ -8,14 +8,12 @@ import org.springframework.web.bind.annotation.*;
 import top.kaoxing.myweb.pojo.minesweeper.MinesweeperResponse;
 import top.kaoxing.myweb.service.MinesweeperGameAgent;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/minesweeper")
 @CrossOrigin(origins = "*")
 public class MinesweeperController {
-
 
     @Autowired
     private MinesweeperGameAgent agent;
@@ -69,7 +67,10 @@ public class MinesweeperController {
     public ResponseEntity<MinesweeperResponse> agentReveal(@RequestBody Map<String,Object> params) {
         String token = params.get("token").toString();
         // let the agent reveal a cell
-        return ResponseEntity.ok(new MinesweeperResponse("200", "Agent revealed", token, "playing", null));
+        Map<String, Object> map = agent.agentReveal(token);
+        Object board = map.get("board");
+        String gameState = map.get("gameState").toString();
+        return ResponseEntity.ok(new MinesweeperResponse("200", "Agent revealed", token, gameState, board));
     }
 
 }

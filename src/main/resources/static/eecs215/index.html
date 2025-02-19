@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EECS 215 Project: Classifying Participant Roles in Collaborative Tasks</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .section h2 {
+            color: #007bff;
+            margin-bottom: 1rem;
+        }
+        .section h3 {
+            color: #343a40;
+            margin-top: 1.5rem;
+        }
+        .section p {
+            line-height: 1.6;
+        }
+        .section ul {
+            padding-left: 1.5rem;
+        }
+        .section ul li {
+            margin-bottom: 0.5rem;
+        }
+        .section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container my-5">
+    <!-- Language Toggle Button -->
+
+    <!-- Download Section -->
+    <div class="download-section">
+        <h3>Download Project Files</h3>
+        <p>Select the file you wish to download:</p>
+        <select id="downloadSelect" class="form-select w-50">
+            <option value="">Please Select</option>
+            <option value="source_code.zip">Project Source Code</option>
+            <option value="project_ppt.pptx">Project PowerPoint</option>
+        </select>
+        <a id="downloadLink" href="#" class="btn btn-primary mt-3" download>Download</a>
+    </div>
+
+    <div class="text-center mb-4">
+        <button class="btn btn-primary" onclick="toggleLanguage()">切换语言 / Switch Language</button>
+    </div>
+
+
+    <!-- Title & Author -->
+    <div id="title-en" class="section">
+        <h2>EECS 215 Project: Classifying Participant Roles in Collaborative Tasks</h2>
+        By Xing Ling, Mahmoud Srewa, Jiawei Yu, Chengyu Mou
+        University of California, Irvine
+    </div>
+    <div id="title-cn" class="section" style="display: none;">
+        <h2>EECS 215 Project: 对协作任务中的参与者角色进行分类</h2>
+        By Xing Ling, Mahmoud Srewa, Jiawei Yu, Chengyu Mou
+        University of California, Irvine
+    </div>
+
+    <!-- Introduction & Motivations -->
+    <div id="intro-en" class="section">
+        <h2>Introduction & Motivations</h2>
+        <p>Collaboration is a fundamental aspect of human behavior, evident from ancient times. For example, cave drawings in the Magura Cave represent early collaboration for survival.</p>
+        <p>Roles are the tasks and functions that team members perform to self-manage the team’s activities. Defining roles leads to:</p>
+        <ul>
+            <li>Clear expectations and better performance.</li>
+            <li>Conservation of energy and resources.</li>
+            <li>Increased satisfaction and retention.</li>
+        </ul>
+        <p>Key Question: How can participant roles in collaborative tasks be identified and classified based on observable behaviors?</p>
+        <p>Our Goals:</p>
+        <ul>
+            <li>Provide insights into group dynamics.</li>
+            <li>Understand how individuals contribute to the success of collaborative tasks.</li>
+            <li>Design systems that foster effective teamwork.</li>
+        </ul>
+    </div>
+
+    <div id="intro-cn" class="section" style="display: none;">
+        <h2>项目背景与动机</h2>
+        <p>协作的重要性：合作是人类行为的基本方面，从古代开始就可以看出。例如，马古拉洞穴中的洞画代表了早期为了生存而进行的合作。</p>
+        <p>角色是团队成员为了自我管理团队活动而执行的任务和职能。定义角色可以带来：</p>
+        <ul>
+            <li>提高团队绩效。</li>
+            <li>节省精力和资源。</li>
+            <li>提高成员的满意度和保留率。</li>
+        </ul>
+        <p>核心问题：如何根据可观察的行为识别和分类协作任务中的参与者角色？</p>
+        <p>我们的目标：</p>
+        <ul>
+            <li>提供对团队动态的洞察。</li>
+            <li>理解个体如何为协作任务的成功做出贡献。</li>
+            <li>设计促进有效团队合作的系统。</li>
+        </ul>
+    </div>
+
+    <!-- Experiment -->
+    <div id="exp-en" class="section">
+        <h2>Experiment for collecting data</h2>
+        <p>Device: Virtual reality headsets</p>
+        <p>Participants: 4 people in one group, 15 groups for total.</p>
+        <p>Procedures:</p>
+        <ul>
+            <li>Given several images and word labels.</li>
+            <li>Freely work together to move images to the appropriate labels.</li>
+        </ul>
+        <p>Data kinds：</p>
+        <ul>
+            <li>Shared Attention Graphs: Indicate instances when two people are looking at the same object.</li>
+            <li>Proximity Graphs: Indicate instances when two people are in close physical proximity.</li>
+            <li>Conversation Graphs: Indicates when a person is talking to another person.</li>
+        </ul>
+    </div>
+
+    <div id="exp-cn" class="section" style="display: none;">
+        <h2>数据收集实验设计</h2>
+        <p>设备：虚拟现实头盔。</p>
+        <p>参与者：4人一组，共15组。</p>
+        <p>流程：参与者根据给定的图像和单词标签，自由协作将图像移动到适当的标签位置。</p>
+        <p>收集的数据：</p>
+        <ul>
+            <li>共享注意力图：表示两个人正在注视同一物体的时刻。</li>
+            <li>接近图：表示两个人在物理上接近的时刻。</li>
+            <li>对话图：表示一个人正在与另一个人交谈的时刻。</li>
+        </ul>
+    </div>
+
+    <!-- Problem Definition -->
+    <div id="problem-en" class="section">
+        <h2>Problem Definition</h2>
+        <p>The Challenge: Collaboration in teams lacks a systematic approach to identify and classify participant roles based on observable behaviors.</p>
+        <p>Our Tasks:</p>
+        <ul>
+            <li>Behavioral Indicators: Identify and derive meaningful behavioral indicators from sensor data.</li>
+            <li>Natural Roles: Define specific natural roles based on features of these indicators.</li>
+            <li>Validation: Use survey data to confirm if the clustering algorithm uncovers meaningful patterns.</li>
+        </ul>
+    </div>
+
+    <div id="problem-cn" class="section" style="display: none;">
+        <h2>问题定义</h2>
+        <p>挑战：团队协作缺乏系统化的方法来基于可观察行为识别和分类参与者角色。</p>
+        <p>我们的任务：</p>
+        <ul>
+            <li>行为指标：从传感器数据中识别并提取有意义的行为指标。</li>
+            <li>自然角色：根据这些指标的特征定义特定的自然角色。</li>
+            <li>验证：使用调查数据确认聚类算法是否揭示了有意义的模式。</li>
+        </ul>
+    </div>
+
+    <!-- Technical Approach & System Overview -->
+    <div id="approach-en" class="section">
+        <h2>Technical Approach & System Overview</h2>
+        <p>Data Processing Pipeline:</p>
+        <ol>
+            <li>Data Preprocessing</li>
+            <li>Select Indicators</li>
+            <li>Dimensionality Reduction (PCA)</li>
+            <li>Clustering (Hierarchical Clustering)</li>
+            <li>Data Augmentation</li>
+            <li>Classification (Decision Tree, SVM, Neural Network)</li>
+        </ol>
+        <p>Main Algorithms:</p>
+        <ul>
+            <li>Hierarchical Clustering: A bottom-up approach that merges the nearest pairs of clusters.</li>
+            <li>PCA (Principal Component Analysis): Used for dimensionality reduction.</li>
+            <li>Decision Tree: A classification tool that models relationships between variables.</li>
+            <li>SVM (Support Vector Machine): A supervised learning algorithm for classification.</li>
+        </ul>
+    </div>
+
+    <div id="approach-cn" class="section" style="display: none;">
+        <h2>技术方法与系统概述</h2>
+        <p>数据处理流程：</p>
+        <ol>
+            <li>数据预处理。</li>
+            <li>选择行为指标。</li>
+            <li>降维（PCA）。</li>
+            <li>聚类（层次聚类）。</li>
+            <li>数据增强。</li>
+            <li>分类（决策树、SVM、神经网络等）。</li>
+        </ol>
+        <p>主要算法：</p>
+        <ul>
+            <li>层次聚类：自底向上的聚类方法，逐步合并最相似的簇。</li>
+            <li>PCA（主成分分析）：用于降维，减少数据复杂性。</li>
+            <li>决策树：用于分类，基于数据做出决策。</li>
+            <li>支持向量机（SVM）：用于分类，寻找最大分隔超平面。</li>
+            <li>全连接神经网络：用于分类。</li>
+        </ul>
+    </div>
+
+    <!-- Evaluation & Results -->
+    <div id="evaluation-en" class="section">
+        <h2>Evaluation & Results</h2>
+        <p>Data Overview: Each group member has three types of features:</p>
+        <ul>
+            <li>Conversation Data: Represents the member’s output of conversation.</li>
+            <li>Proximity Data: Represents instances when two people are in close physical proximity.</li>
+            <li>Shared Attention Data: Represents instances when two people focus on the same target.</li>
+        </ul>
+        <p>Preprocessing: Abnormal data (e.g., Group 8) was removed to avoid skewing results.</p>
+        <p>Clustering Results: After removing outliers, four clusters were identified:</p>
+        <ul>
+            <li>Cluster 1: Low indicators in all aspects (Independent Participant).</li>
+            <li>Cluster 2: Slightly high indicators in all aspects (Collaborator).</li>
+            <li>Cluster 3: Very high indicators in all aspects (Primary Decision-Maker).</li>
+            <li>Cluster 4: High indicators in collaboration and influence (Coordinator).</li>
+        </ul>
+        <p>Classification Results: SVM and Neural Network achieved the highest accuracy (93.9% and 93.2%).</p>
+    </div>
+
+    <div id="evaluation-cn" class="section" style="display: none;">
+        <h2>评估与结果</h2>
+        <p>数据概述：每个小组成员有三种特征：</p>
+        <ul>
+            <li>对话数据：代表成员的对话输出。</li>
+            <li>接近度数据：代表两人在物理上接近的实例。</li>
+            <li>共享注意力数据：代表两人关注同一目标的实例。</li>
+        </ul>
+        <p>数据预处理：去除异常数据（如第8组数据），并进行归一化处理。</p>
+        <p>聚类结果：去除异常数据后，聚类结果更加清晰，分为四个簇：</p>
+        <ul>
+            <li>独立参与者：在所有三个方面指标较低。</li>
+            <li>协作者：在所有三个方面指标略高。</li>
+            <li>主要决策者：在所有三个方面指标非常高。</li>
+            <li>协调者：在协作和影响力方面指标较高。</li>
+        </ul>
+        <p>分类结果：使用决策树、SVM、神经网络等方法进行分类，SVM和神经网络获得了较高的准确率（93.9%和93.2%）。</p>
+    </div>
+
+    <!-- Product Deployment -->
+    <div id="deployment-en" class="section">
+        <h2>Product Deployment</h2>
+        <p>Object Server: A server system designed to store and manage data as objects.</p>
+        <p>Data Communication: Supports clustering and classification tasks with commands like INIT, ACCEPT, FINISH, and ERROR.</p>
+        <p>Docker: Used to build, package, and deploy applications in lightweight containers.</p>
+    </div>
+
+    <div id="deployment-cn" class="section" style="display: none;">
+        <h2>系统部署</h2>
+        <p>对象服务器：用于存储和管理数据的服务器系统。</p>
+        <p>数据通信：支持聚类和分类任务，消息格式包括初始化、任务确认、任务完成、错误处理等。</p>
+        <p>Docker：用于构建、打包和部署应用程序的轻量级容器平台。</p>
+    </div>
+
+    <!-- Conclusion & Future Work -->
+    <div id="conclusion-en" class="section">
+        <h2>Conclusion & Future Work</h2>
+        <p>Conclusion: The project successfully classified participant roles in collaborative tasks using hierarchical clustering and achieved high accuracy with classification algorithms.</p>
+        <p>Future Work: Further optimization of algorithms, expansion of datasets, and improvement of system generalization.</p>
+    </div>
+
+    <div id="conclusion-cn" class="section" style="display: none;">
+        <h2>结论与未来工作</h2>
+        <p>结论：通过层次聚类算法，成功识别了协作任务中的不同参与者角色，并通过分类算法验证了结果的准确性。</p>
+        <p>未来工作：进一步优化算法，扩展数据集，提升系统的泛化能力和实际应用效果。</p>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+<!-- Language Toggle Script -->
+<script>
+    function toggleLanguage() {
+        const elementsEn = document.querySelectorAll('[id$="-en"]');
+        const elementsCn = document.querySelectorAll('[id$="-cn"]');
+
+        // Toggle visibility of English and Chinese content
+        elementsEn.forEach(element => element.style.display = element.style.display === 'none' ? 'block' : 'none');
+        elementsCn.forEach(element => element.style.display = element.style.display === 'none' ? 'block' : 'none');
+    }
+    // Handle the download link based on the selection
+    document.getElementById('downloadSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        var downloadLink = document.getElementById('downloadLink');
+        downloadLink.href = selectedValue;
+    });
+</script>
+</body>
+</html>

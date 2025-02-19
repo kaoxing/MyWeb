@@ -61,8 +61,6 @@ public class MinesweeperGameAgent{
         // create a new game
         String token = GenerateGameId();
 
-        System.out.println("token: " + token);
-
         Map<String,Object> map = minesweeperRemoteServer.createGame(token, boardSize, numOfMines);
 
         return Map.of(
@@ -94,9 +92,12 @@ public class MinesweeperGameAgent{
         );
     }
 
-
-
-    public void agentReveal() {
-
+    public Map<String,Object> agentReveal(String token) {
+        // let the agent reveal a cell
+        Map<String,Object> map = minesweeperRemoteServer.agentReveal(token);
+        return Map.of(
+                "board", map.get("board"),
+                "gameState", map.get("gameState")
+        );
     }
 }

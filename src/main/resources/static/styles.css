@@ -1,0 +1,313 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#language-toggle {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#language-toggle:hover {
+    background-color: #777;
+}
+
+section {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+
+/* 应用到新的 div 容器 */
+#contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 标签样式 */
+#contact-form label {
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+/* 输入框样式 */
+#contact-form input,
+#contact-form textarea {
+    margin-bottom: 16px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* 文本域样式 */
+#contact-form textarea {
+    resize: vertical; /* 允许垂直调整大小 */
+    min-height: 100px;
+}
+
+/* 提交按钮样式 */
+#contact-form button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#contact-form button:hover {
+    background-color: #0056b3;
+}
+
+/* 其他样式 */
+#contact-title {
+    font-size: 24px;
+    margin-bottom: 16px;
+}
+
+#contact-email {
+    margin-bottom: 16px;
+    color: #666;
+}
+
+#messages-container {
+    margin-top: 24px;
+}
+
+#messages-container h3 {
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+#messages-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#messages-list li {
+    background-color: #f9f9f9;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    width: 100%;
+    position: static;
+    margin-top: auto;
+}
+
+.project {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    position: relative; /* 使按钮容器可以相对于项目框定位 */
+    min-height: 200px; /* 确保项目框有一定高度 */
+}
+
+.button-container {
+    position: absolute; /* 绝对定位 */
+    bottom: 15px; /* 距离底部 15px */
+    right: 15px; /* 距离右侧 15px */
+}
+
+.project-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+
+.project-button:hover {
+    background-color: #555;
+}
+
+/* 所有模块的 h2 样式 */
+h2 {
+    color: #333;
+    border-bottom: 2px solid #333; /* 下划线 */
+    padding-bottom: 10px; /* 下划线与标题的距离 */
+    margin-bottom: 10px; /* 下划线与邮箱的距离 */
+}
+
+/* 留言模块的标题容器 */
+.contact-header {
+    margin-bottom: 20px; /* 标题容器与表单的间距 */
+}
+
+/* 邮箱样式 */
+#contact-email {
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left; /* 邮箱居右 */
+}
+
+/* 悬浮栏 */
+#music-bar {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* 确保悬浮栏在最上层 */
+    width: 300px; /* 固定宽度 */
+    height: auto; /* 高度自适应内容 */
+}
+
+/* 收起/展开按钮 */
+#toggle-btn {
+    width: 100%;
+    padding: 5px;
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+#toggle-btn:hover {
+    background-color: #5a6268;
+}
+
+/* 内容部分 */
+#music-content {
+    display: block; /* 默认显示内容 */
+}
+
+/* 收起状态 */
+#music-bar.collapsed #music-content {
+    display: none; /* 隐藏内容 */
+}
+
+#music-bar.collapsed #toggle-btn {
+    content: '展开'; /* 切换按钮文本 */
+}
+
+/* 播放/暂停按钮 */
+#play-pause-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+#play-pause-btn:hover {
+    background-color: #0056b3;
+}
+
+/* 进度条和时间显示 */
+#progress-container {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+#time-display {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+#current-time, #total-time {
+    display: inline-block;
+    width: 40px; /* 固定宽度，避免时间变化时布局抖动 */
+    text-align: center;
+}
+
+#progress-bar {
+    width: 100%; /* 进度条宽度为 100% */
+    margin: 0; /* 移除默认的 margin */
+}
+
+/* 曲目选择 */
+#music-select {
+    width: 100%;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    overflow-y: auto; /* 允许垂直滚动 */
+}
+
+/* 音量控制 */
+#volume-container {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+#volume-control {
+    width: 100%;
+    margin-bottom: 0;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minesweeper</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+    <div class="header">
+        Minesweeper
+    </div>
+    <div class="main">
+        <div class="game-controls">
+            <input type="number" v-model="boardSize" min="1" max="9" placeholder="Board Size">
+            <input type="number" v-model="numMines" min="1" max="10" placeholder="Mines">
+            <button @click="startGame">Start Game</button>
+            <button v-if="gameStarted" @click="resetGame">Reset Game</button>
+            <button v-if="gameStarted" @click="agentReveal">AI Agent</button>
+        </div>
+        <div v-if="gameStarted" class="board">
+            <div v-for="(row, rowIndex) in board" :key="rowIndex" class="row">
+                <div
+                        v-for="(cell, colIndex) in row"
+                        :key="colIndex"
+                        class="cell"
+                        :class="{ revealed: cell !== 9, mine: cell === -1 }"
+                        @click="revealCell(rowIndex, colIndex)"
+                >
+                    {{ cell === 9 ? '' : cell === -1 ? '💣' : cell }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        &copy; 2023 Minesweeper Game. All rights reserved.
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script src="script.js"></script>
+</body>
+</html>
