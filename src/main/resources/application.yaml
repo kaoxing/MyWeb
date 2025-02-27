@@ -6,11 +6,12 @@ spring:
     redis:
       host: redis.kaoxing.top
       port: 6379
-  mvc:
-    view:
-      prefix: /
-      suffix: .html
-
+      password: 760810Pp!
+  datasource:
+    url: jdbc:mysql://ali.kaoxing.top:3306/webapp
+    username: root
+    password: 760810Pp!
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
 server:
   address: 0.0.0.0
@@ -23,6 +24,7 @@ minesweeper:
     reset: /reset
     reveal: /reveal
     board: /board
+    agentReveal: /agentReveal
     delete: /delete
     password: kaoxing
     tokenExpiration: 3600

@@ -6,22 +6,25 @@ const languageData = {
         navProjects: "项目展示",
         navContact: "给我留言",
         aboutTitle: "关于自己",
-        aboutContent: "你好！我是一名热爱学习编程和AI的计算机专业硕士学生，目前就读于加州大学尔湾分校，主修课程为机器学习，算法设计，操作系统，分布式系统；" +
-            "目前研究方向为分割计算，该方向主要研究在深度学习下游任务中（分类，检测，自动导航），如何在算力和网络受限的边缘设备上（无人机，无人小车）做出智能决策，提高模型性能，减少数据传输和计算时间。",
+        aboutContent: "你好！我是凌兴，一名热爱学习编程和AI的计算机专业硕士学生，目前就读于加州大学尔湾分校，主修课程为机器学习，算法设计，操作系统，分布式系统；" +
+            "本科期间主要研究内容为基于深度学习的计算机视觉，旨在提高医学影像的语义分割任务中模型的性能。" +
+            "目前研究方向为分割计算，主要研究在深度学习下游任务中（分类，检测，自动导航），如何在算力和网络受限的边缘设备上（无人机，无人小车）做出智能决策，提高模型性能，减少数据传输和计算时间。",
         projectsTitle: "有趣项目",
         project1Title: "维基百科搜索引擎",
         project1Content: "这是一个基于Hadoop和Lucene的维基百科搜索引擎，使用分布式索引和计算，且具备一定容灾能力，后端基于SpringBoot编写。",
         project2Title: "扫雷小游戏",
-        project2Content: "这是一个简单的扫雷小游戏，你可以要求笨笨的AI帮你扫雷哦，后端基于SpringBoot编写，扫雷和AI算法使用Python实现。",
+        project2Content: "这是一个简单的扫雷小游戏，你可以要求笨笨的AI帮你扫雷，后端基于SpringBoot编写，扫雷和AI算法使用Python实现。",
         project3Title: "课程项目：对协作任务中参与者角色分类",
         project3Content: "基于一系列机器学习和降维算法，对一项协作任务中的参与者进行角色分类。",
+        project4Title: "本科毕设：心脏图像分割算法研究",
+        project4Content: "基于深度学习算法对心脏医学影像进行语义分割，通过引入边缘感知任务和特征融合模块提高模型性能。",
         contactTitle: "给我留言",
         labelName: "姓名:",
         labelEmail: "邮箱:",
         labelMessage: "留言:",
         submitButton: "提交",
         messageListTitle: "所有留言",
-        footerText: "&copy; 2023 我的个人网站. 保留所有权利.",
+        footerText: "&copy; 2025 兴的个人网站. 保留所有权利.",
         languageToggle: "切换至英文 / Switch to English",
         project1Button: "查看详情",
         project2Button: "查看详情",
@@ -51,7 +54,7 @@ const languageData = {
         labelMessage: "Message:",
         submitButton: "Submit",
         messageListTitle: "All Messages",
-        footerText: "&copy; 2023 My Personal Website. All rights reserved.",
+        footerText: "&copy; 2025 Xing's Personal Website. All rights reserved.",
         languageToggle: "切换至中文 / Switch to Chinese",
         project1Button: "View Project",
         project2Button: "View Project",
@@ -88,6 +91,8 @@ function updateContent() {
     document.getElementById("project2-content").textContent = data.project2Content;
     document.getElementById("project3-title").textContent = data.project3Title;
     document.getElementById("project3-content").textContent = data.project3Content;
+    document.getElementById("project4-title").textContent = data.project4Title;
+    document.getElementById("project4-content").textContent = data.project4Content;
     document.getElementById("contact-title").textContent = data.contactTitle;
     document.getElementById("label-email").textContent = data.labelEmail;
     document.getElementById("label-name").textContent = data.labelName;

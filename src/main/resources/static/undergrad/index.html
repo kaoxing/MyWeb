@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>毕业答辩：基于深度学习的心脏图像分割算法研究与系统实现</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+    }
+    .section {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .section h2 {
+      color: #007bff;
+      margin-bottom: 1rem;
+    }
+    .section h3 {
+      color: #343a40;
+      margin-top: 1.5rem;
+    }
+    .section p {
+      line-height: 1.6;
+    }
+    .section ul {
+      padding-left: 1.5rem;
+    }
+    .section ul li {
+      margin-bottom: 0.5rem;
+    }
+    .language-switch {
+      text-align: right;
+      margin-bottom: 1rem;
+    }
+    .language-switch button {
+      margin-left: 0.5rem;
+    }
+    .img-placeholder {
+      width: 100%;
+      max-height: 400px; /* 限制最大高度，可调整 */
+      background-color: #e9ecef;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6c757d;
+      margin-top: 1rem;
+      overflow: hidden; /* 防止超出 */
+    }
+    .img-placeholder img {
+      max-width: 100%;  /* 确保图片不会超出容器宽度 */
+      max-height: 100%; /* 确保图片不会超出容器高度 */
+      object-fit: contain; /* 保持原始比例 */
+      border-radius: 8px; /* 让图片的边角和 div 一致 */
+    }
+  </style>
+</head>
+<body>
+<div class="container my-5">
+  <!-- 语言切换按钮 -->
+  <div class="language-switch">
+    <button class="btn btn-primary" onclick="switchLanguage('zh')">中文</button>
+    <button class="btn btn-primary" onclick="switchLanguage('en')">English</button>
+  </div>
+
+  <!-- 标题 -->
+  <h1 class="text-center mb-4" data-zh="毕业答辩：基于深度学习的心脏图像分割算法研究与系统实现" data-en="Graduation Defense: Research and System Implementation of Deep Learning-Based Cardiac Image Segmentation Algorithm">
+    毕业答辩：基于深度学习的心脏图像分割算法研究与系统实现
+  </h1>
+
+  <!-- 研究意义 -->
+  <div class="section">
+    <h2 data-zh="研究意义" data-en="Research Significance">研究意义</h2>
+    <p data-zh="心血管疾病是全球主要的死亡原因之一，医学影像分析在心血管疾病的诊断中起着关键作用。心脏图像分割是医学影像分析的重要步骤，但传统的手动分割方法耗时且易受主观因素影响。自动化的心脏图像分割系统可以提高分割效率，减少人为误差，辅助医生进行更准确的诊断。" data-en="Cardiovascular diseases are one of the leading causes of death worldwide. Medical imaging analysis plays a crucial role in the diagnosis of cardiovascular diseases. Cardiac image segmentation is a key step in medical imaging analysis, but traditional manual segmentation methods are time-consuming and prone to subjective errors. Automated cardiac image segmentation systems can improve segmentation efficiency, reduce human errors, and assist doctors in making more accurate diagnoses.">
+      心血管疾病是全球主要的死亡原因之一，医学影像分析在心血管疾病的诊断中起着关键作用。心脏图像分割是医学影像分析的重要步骤，但传统的手动分割方法耗时且易受主观因素影响。自动化的心脏图像分割系统可以提高分割效率，减少人为误差，辅助医生进行更准确的诊断。
+    </p>
+    <!-- 插入图片示例 -->
+    <div class="img-placeholder">
+      <img src="./figure/LabelHeart.png" alt="label heart" width="600">
+      <img src="./figure/Heart3D.png" alt="heart 3D" width="600">
+    </div>
+  </div>
+
+  <!-- 研究现状 -->
+  <div class="section">
+    <h2 data-zh="研究现状" data-en="Research Status">研究现状</h2>
+    <p data-zh="国内外研究主要集中在网络结构和数据增强方法的改进上。U-Net及其变体（如U-Net++、V-Net、U-Net3+等）在医学图像分割中广泛应用，基于Transformer的视觉模型（如Vision Transformer、DA-TransUNet等）也取得了显著进展。数据增强方法包括传统数据增强、迁移学习和生成对抗网络（GAN），但这些方法在处理医学图像时仍存在局限性。" data-en="Domestic and international research mainly focuses on improvements in network structures and data augmentation methods. U-Net and its variants (such as U-Net++, V-Net, U-Net3+, etc.) are widely used in medical image segmentation, and Transformer-based visual models (such as Vision Transformer, DA-TransUNet, etc.) have also made significant progress. Data augmentation methods include traditional data augmentation, transfer learning, and generative adversarial networks (GANs), but these methods still have limitations when dealing with medical images.">
+      国内外研究主要集中在网络结构和数据增强方法的改进上。U-Net及其变体（如U-Net++、V-Net、U-Net3+等）在医学图像分割中广泛应用，基于Transformer的视觉模型（如Vision Transformer、DA-TransUNet等）也取得了显著进展。数据增强方法包括传统数据增强、迁移学习和生成对抗网络（GAN），但这些方法在处理医学图像时仍存在局限性。
+    </p>
+  </div>
+
+  <!-- 研究方法 -->
+  <div class="section">
+    <h2 data-zh="研究方法" data-en="Research Method">研究方法</h2>
+    <p data-zh="本文提出了一种基于生成对抗网络的数据增强方法和边缘感知的心脏分割算法。通过循环一致性生成对抗网络（CycleGAN）进行数据增强，解决了医学影像数据稀缺的问题。通过添加额外边缘任务和设计基于注意力的特征融合模块，提高了模型对心脏结构边缘的分割精度。损失函数结合了交叉熵损失和Dice损失，优化了模型训练。" data-en="This paper proposes a data augmentation method based on generative adversarial networks and an edge-aware cardiac segmentation algorithm. Data augmentation is performed using Cycle-Consistent Generative Adversarial Networks (CycleGAN) to address the scarcity of medical imaging data. By adding additional edge tasks and designing an attention-based feature fusion module, the model's segmentation accuracy for cardiac structure edges is improved. The loss function combines cross-entropy loss and Dice loss to optimize model training.">
+      本文提出了一种基于生成对抗网络的数据增强方法和边缘感知的心脏分割算法。通过循环一致性生成对抗网络（CycleGAN）进行数据增强，解决了医学影像数据稀缺的问题。通过添加额外边缘任务和设计基于注意力的特征融合模块，提高了模型对心脏结构边缘的分割精度。损失函数结合了交叉熵损失和Dice损失，优化了模型训练。
+    </p>
+    <!-- 插入图片示例 -->
+    <div class="img-placeholder">
+      <img src="./figure/CycleGAN.png" alt="label heart">
+    </div>
+    <div class="img-placeholder">
+      <img src="./figure/EdgeTask.png" alt="label heart">
+    </div>
+  </div>
+
+  <!-- 实验结果 -->
+  <div class="section">
+    <h2 data-zh="实验结果" data-en="Experiment Results">实验结果</h2>
+    <p data-zh="在MM-WHS 2017数据集上的实验表明，本文提出的方法在多个心脏结构的分割任务中表现出色，Dice系数显著提升，尤其是在边缘区域的感知能力上表现优异。通过消融实验验证了数据增强、边缘任务和特征融合模块的有效性。" data-en="Experiments on the MM-WHS 2017 dataset show that the proposed method performs well in multiple cardiac structure segmentation tasks, with significant improvements in Dice coefficients, especially in edge region perception. The effectiveness of data augmentation, edge tasks, and feature fusion modules is validated through ablation experiments.">
+      在MM-WHS 2017数据集上的实验表明，本文提出的方法在多个心脏结构的分割任务中表现出色，Dice系数显著提升，尤其是在边缘区域的感知能力上表现优异。通过消融实验验证了数据增强、边缘任务和特征融合模块的有效性。
+    </p>
+    <!-- 插入图片示例 -->
+    <div class="img-placeholder">
+      <img src="./figure/Result.png" alt="label heart" width="700">
+    </div>
+    <div class="img-placeholder">
+      <img src="./figure/Evaluate1.png" alt="label heart" width="800">
+    </div>
+  </div>
+
+  <!-- 总结 -->
+  <div class="section">
+    <h2 data-zh="总结" data-en="Summary">总结</h2>
+    <p data-zh="本文提出的方法有效解决了医学影像数据稀缺和心脏结构边缘模糊的问题，提升了心脏图像分割的准确性和鲁棒性。未来可以引入基于扩散模型的数据增强方法，进一步优化边缘感知任务和特征融合模块，并将系统应用于更广泛的医学影像处理场景。" data-en="The proposed method effectively addresses the scarcity of medical imaging data and the blurring of cardiac structure edges, improving the accuracy and robustness of cardiac image segmentation. Future work could introduce diffusion model-based data augmentation methods, further optimize edge-aware tasks and feature fusion modules, and apply the system to a wider range of medical imaging processing scenarios.">
+      本文提出的方法有效解决了医学影像数据稀缺和心脏结构边缘模糊的问题，提升了心脏图像分割的准确性和鲁棒性。未来可以引入基于扩散模型的数据增强方法，进一步优化边缘感知任务和特征融合模块，并将系统应用于更广泛的医学影像处理场景。
+    </p>
+    <!-- GitHub 链接按钮 -->
+    <div class="text-center mt-3">
+      <a href="https://github.com/kaoxing/UndergraduateProject/tree/master" target="_blank" class="btn btn-dark">
+        <i class="bi bi-github"></i> GitHub
+      </a>
+      <a href="https://web.kaoxing.top/undergrad/thesis.pdf" target="_blank" class="btn btn-dark">
+        <i class="bi bi-github"></i> Thesis
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- 语言切换脚本 -->
+<script>
+  function switchLanguage(lang) {
+    const elements = document.querySelectorAll('[data-zh], [data-en]');
+    elements.forEach(element => {
+      if (lang === 'zh') {
+        element.textContent = element.getAttribute('data-zh');
+      } else if (lang === 'en') {
+        element.textContent = element.getAttribute('data-en');
+      }
+    });
+  }
+</script>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
