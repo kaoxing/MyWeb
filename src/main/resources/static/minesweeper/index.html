@@ -19,6 +19,7 @@
             <button @click="startGame">Start Game</button>
             <button v-if="gameStarted" @click="resetGame">Reset Game</button>
             <button v-if="gameStarted" @click="agentReveal">AI Agent</button>
+            <button v-if="gameStarted" @click="llmReveal">LLM Agent</button>
         </div>
         <div v-if="gameStarted" class="board">
             <div v-for="(row, rowIndex) in board" :key="rowIndex" class="row">

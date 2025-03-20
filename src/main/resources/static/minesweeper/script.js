@@ -6,8 +6,8 @@ new Vue({
             numMines: '',
             board: [],
             gameStarted: false,
-            apiBaseUrl: 'https://web.kaoxing.top/minesweeper',
-            // apiBaseUrl: 'http://localhost/minesweeper',
+            //apiBaseUrl: 'https://web.kaoxing.top/minesweeper',
+            apiBaseUrl: 'http://localhost/minesweeper',
             token: '',
         };
     },
@@ -56,6 +56,26 @@ new Vue({
             }
             try {
                 const response = await fetch(`${this.apiBaseUrl}/agentReveal`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ token: this.token }),
+                });
+                const data = await response.json();
+                this.board = data.board;
+
+                if (data.gameState !== 'inProgress') {
+                    setTimeout(() => {
+                        alert(data.gameState === 'win' ? 'You Win!' : 'You Lose!');
+                        this.gameStarted = false;
+                    }, 200);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        async llmReveal() {
+            try {
+                const response = await fetch(`${this.apiBaseUrl}/LLMReveal`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ token: this.token }),

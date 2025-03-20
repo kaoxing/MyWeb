@@ -28,13 +28,16 @@ public class MinesweeperRemoteServer {
     @Value("${minesweeper.remoteServer.delete}")
     private String delete;
 
+    @Value("${minesweeper.remoteServer.LLMReveal}")
+    private String LLMReveal;
+
     @Autowired
     RestTemplate restTemplate;
 
 
     public Map createGame(String token, int boardSize, int numOfMines) {
 
-        System.out.println(url);
+        //System.out.println(url);
 
         Map<String, Object> map = Map.of("board_size", boardSize, "num_mines", numOfMines, "token", token);
 
@@ -62,6 +65,13 @@ public class MinesweeperRemoteServer {
         Map<String, Object> map = Map.of("token", token);
 
         return restTemplate.postForObject(url+agentReveal, map, Map.class);
+    }
+
+    public Map LLMReveal(String token) {
+        //let the agent reveal a cell
+        Map<String, Object> map = Map.of("token", token);
+
+        return restTemplate.postForObject(url+LLMReveal, map, Map.class);
     }
 
     public void deleteGame(String token) {

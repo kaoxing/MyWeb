@@ -100,4 +100,13 @@ public class MinesweeperGameAgent{
                 "gameState", map.get("gameState")
         );
     }
+
+    public Map<String, Object> LLMReveal(String token) {
+        // let the agent reveal a cell
+        Map<String, Object> map = minesweeperRemoteServer.LLMReveal(token);
+        return Map.of(
+                "board", map.get("board"),
+                "gameState", map.get("gameState")
+        );
+    }
 }

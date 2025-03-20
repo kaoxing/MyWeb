@@ -73,4 +73,14 @@ public class MinesweeperController {
         return ResponseEntity.ok(new MinesweeperResponse("200", "Agent revealed", token, gameState, board));
     }
 
+    @PostMapping("/LLMReveal")
+    public ResponseEntity<MinesweeperResponse> LLMReveal(@RequestBody Map<String,Object> params) {
+        String token = params.get("token").toString();
+        // let the agent reveal a cell
+        Map<String, Object> map = agent.LLMReveal(token);
+        Object board = map.get("board");
+        String gameState = map.get("gameState").toString();
+        return ResponseEntity.ok(new MinesweeperResponse("200", "LLM revealed", token, gameState, board));
+    }
+
 }
