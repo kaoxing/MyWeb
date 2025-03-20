@@ -54,8 +54,8 @@
         <p>Select the file you wish to download:</p>
         <select id="downloadSelect" class="form-select w-50">
             <option value="">Please Select</option>
-            <option value="source_code.zip">Project Source Code</option>
-            <option value="project_ppt.pptx">Project PowerPoint</option>
+            <option value="source_code.zip">Project Source Code 项目源码</option>
+            <option value="project_ppt.pptx">Project Slides 项目PPT</option>
         </select>
         <a id="downloadLink" href="#" class="btn btn-primary mt-3" download>Download</a>
     </div>
@@ -165,6 +165,45 @@
             <li>行为指标：从传感器数据中识别并提取有意义的行为指标。</li>
             <li>自然角色：根据这些指标的特征定义特定的自然角色。</li>
             <li>验证：使用调查数据确认聚类算法是否揭示了有意义的模式。</li>
+        </ul>
+    </div>
+
+    <div id="hard-cn" class="section" style="display: none;">
+        <h2>难点</h2>
+        <p>行为数据的选择与处理：</p>
+        <ol>
+            <li>如何从数据指标中提取有意义的行为指标。</li>
+            <li>如何定义自然角色并与数据特征匹配。</li>
+        </ol>
+        <p>数据预处理与降维：</p>
+        <ul>
+            <li>需要去除异常数据（如第 8 组数据对均值和方差的影响过大）。</li>
+            <li>使用 PCA（主成分分析） 降维，提高模型的泛化能力。</li>
+        </ul>
+        <p>数据量不足的问题：</p>
+        <ul>
+            <li>数据点少，导致模型容易过拟合。</li>
+            <li>采用高斯噪声数据增强，将数据扩充以提高分类效果。</li>
+        </ul>
+    </div>
+
+    <!-- Evaluation & Results -->
+    <div id="hard-en" class="section">
+        <h2>Challenges</h2>
+        <p>Selection and Processing of Behavioral Data:</p>
+        <ol>
+            <li>How to extract meaningful behavioral indicators from data metrics.</li>
+            <li>How to define natural roles and match them with data characteristics.</li>
+        </ol>
+        <p>Data Preprocessing and Dimensionality Reduction:</p>
+        <ul>
+            <li>Outlier data needs to be removed (e.g., the impact of Group 8 data on the mean and variance is too significant).</li>
+            <li>Use PCA (Principal Component Analysis) for dimensionality reduction to improve model generalization.</li>
+        </ul>
+        <p>Issue of Insufficient Data:</p>
+        <ul>
+            <li>Limited data points make the model prone to overfitting.</li>
+            <li>Apply Gaussian noise data augmentation to expand the dataset and improve classification performance.</li>
         </ul>
     </div>
 

@@ -29,25 +29,28 @@ const languageData = {
         project1Button: "查看详情",
         project2Button: "查看详情",
         project3Button: "查看详情",
+        project4Button: "查看详情",
         toggleBtn: "收起",
         playPauseBtn: "播放",
         volumeLabel: "音量:",
         defaultSongLabel: "请选择曲目",
     },
     en: {
-        headerTitle: "Welcome to My Personal Website",
+        headerTitle: "Welcome to Xing's Little Station",
         navAbout: "About Me",
         navProjects: "Projects",
         navContact: "Contact Me",
         aboutTitle: "About Me",
-        aboutContent: "Hello! I am a front-end developer passionate about programming and design. I specialize in using HTML, CSS, and JavaScript to build beautiful and functional websites.",
+        aboutContent: "Hello! I am Ling Xing, a master's student in computer science passionate about programming and AI. I am currently studying at the University of California, Irvine, focusing on machine learning, algorithm design, operating systems, and distributed systems. During my undergraduate studies, my main research area was deep learning-based computer vision, aiming to improve model performance in semantic segmentation tasks for medical imaging. My current research direction is split computing, focusing on how to make intelligent decisions on edge devices with limited computational power and network capabilities (such as drones and unmanned vehicles) in downstream deep learning tasks (classification, detection, autonomous navigation), to enhance model performance and reduce data transmission and computation time.",
         projectsTitle: "Projects",
-        project1Title: "Project One",
-        project1Content: "This is a project about responsive design, demonstrating how to optimize user experience across different devices.",
-        project2Title: "Project Two",
-        project2Content: "This is an interactive web application built with JavaScript, offering rich user interaction features.",
-        project3Title: "Project Three",
-        project3Content: "This is a front-end project based on React, showcasing the power of component-based development.",
+        project1Title: "Wikipedia Search Engine",
+        project1Content: "This is a Wikipedia search engine based on Hadoop and Lucene, utilizing distributed indexing and computation with certain disaster recovery capabilities. The backend is developed using SpringBoot.",
+        project2Title: "Minesweeper Game",
+        project2Content: "This is a simple Minesweeper game where you can ask a not-so-smart AI to help you sweep mines. The backend is developed using SpringBoot, while the Minesweeper and AI algorithms are implemented in Python.",
+        project3Title: "Course Project: Role Classification in Collaborative Tasks",
+        project3Content: "Based on a series of machine learning and dimensionality reduction algorithms, this project classifies the roles of participants in a collaborative task.",
+        project4Title: "Undergraduate Thesis: Research on Heart Image Segmentation Algorithms",
+        project4Content: "This research focuses on semantic segmentation of cardiac medical images using deep learning algorithms, improving model performance by introducing edge-aware tasks and feature fusion modules.",
         contactTitle: "Contact Me",
         labelName: "Name:",
         labelEmail: "Email:",
@@ -59,6 +62,7 @@ const languageData = {
         project1Button: "View Project",
         project2Button: "View Project",
         project3Button: "View Project",
+        project4Button: "View Project",
         toggleBtn: "Collapse",
         playPauseBtn: "Play",
         volumeLabel: "Volume:",
@@ -104,6 +108,7 @@ function updateContent() {
     document.getElementById("project1-button").textContent = data.project1Button;
     document.getElementById("project2-button").textContent = data.project2Button;
     document.getElementById("project3-button").textContent = data.project3Button;
+    document.getElementById("project4-button").textContent = data.project4Button;
     document.getElementById("toggle-btn").textContent = data.toggleBtn;
     document.getElementById("play-pause-btn").textContent = data.playPauseBtn;
     document.getElementById("volume-label").textContent = data.volumeLabel;

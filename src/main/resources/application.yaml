@@ -8,7 +8,7 @@ spring:
       port: 6379
       password: 760810Pp!
   datasource:
-    url: jdbc:mysql://ali.kaoxing.top:3306/webapp
+    url: jdbc:mysql://101.132.96.240:3306/webapp
     username: root
     password: 760810Pp!
     driver-class-name: com.mysql.cj.jdbc.Driver

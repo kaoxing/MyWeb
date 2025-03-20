@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目介绍：基于Lucene和Hadoop的维基百科分布式搜索引擎</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .section h2 {
+            color: #007bff;
+            margin-bottom: 1rem;
+        }
+        .section h3 {
+            color: #343a40;
+            margin-top: 1.5rem;
+        }
+        .section p {
+            line-height: 1.6;
+        }
+        .section ul {
+            padding-left: 1.5rem;
+        }
+        .section ul li {
+            margin-bottom: 0.5rem;
+        }
+        .language-switch {
+            text-align: right;
+            margin-bottom: 1rem;
+        }
+        .language-switch button {
+            margin-left: 0.5rem;
+        }
+        .img-placeholder {
+            width: 100%;
+            max-height: 400px; /* 限制最大高度，可调整 */
+            background-color: #e9ecef;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            margin-top: 1rem;
+            overflow: hidden; /* 防止超出 */
+        }
+        .img-placeholder img {
+            max-width: 100%;  /* 确保图片不会超出容器宽度 */
+            max-height: 100%; /* 确保图片不会超出容器高度 */
+            object-fit: contain; /* 保持原始比例 */
+            border-radius: 8px; /* 让图片的边角和 div 一致 */
+        }
+        .button-group {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .button-group a {
+            margin: 0 0.5rem;
+        }
+        .video-container {
+            width: 100%;
+            max-width: 800px; /* 限制视频的最大宽度 */
+            margin: 0 auto; /* 居中显示 */
+            margin-top: 1rem;
+        }
+        .video-container video {
+            width: 100%;
+            border-radius: 8px; /* 让视频的边角和 section 一致 */
+        }
+    </style>
+</head>
+<body>
+<div class="container my-5">
+    <!-- 语言切换按钮 -->
+    <div class="language-switch">
+        <button class="btn btn-primary" onclick="switchLanguage('zh')">中文</button>
+        <button class="btn btn-primary" onclick="switchLanguage('en')">English</button>
+    </div>
+
+    <!-- 标题 -->
+    <h1 class="text-center mb-4" data-zh="项目介绍：基于Lucene和Hadoop的维基百科分布式搜索引擎" data-en="Project Introduction: Wikipedia Distributed Search Engine Based on Lucene and Hadoop">
+        项目介绍：基于Lucene和Hadoop的维基百科分布式搜索引擎
+    </h1>
+
+    <!-- GitHub 和 PPT 下载链接 -->
+    <div class="button-group">
+        <a href="https://github.com/Nehereus/cs230" target="_blank" class="btn btn-dark">
+            <i class="bi bi-github"></i> GitHub
+        </a>
+        <a href="Wiki_Fuzzy_Search.pptx" target="_blank" class="btn btn-dark">
+            <i class="bi bi-file-earmark-ppt"></i> PPT
+        </a>
+        <a href="https://wiki.javacafe.dev/" target="_blank" class="btn btn-dark">
+            <i class="bi Demo"></i> Usable Demo
+        </a>
+    </div>
+
+    <!-- 项目概述 -->
+    <div class="section">
+        <h2 data-zh="项目概述" data-en="Project Overview">项目概述</h2>
+        <p data-zh="本项目的目标是开发一个专门为英文维基百科优化的分布式搜索引擎。通过利用Lucene和Hadoop，我们旨在提高搜索效率并增强系统的容错能力。项目重点在于实现模糊搜索算法，并高效处理维基百科的大数据集（约90GB）。" data-en="The goal of this project is to develop a distributed search engine specifically optimized for the English Wikipedia. By leveraging Lucene and Hadoop, we aim to improve search efficiency and enhance system fault tolerance. The project focuses on implementing a fuzzy search algorithm and efficiently handling the large dataset of Wikipedia (~90GB).">
+            本项目的目标是开发一个专门为英文维基百科优化的分布式搜索引擎。通过利用Lucene和Hadoop，我们旨在提高搜索效率并增强系统的容错能力。项目重点在于实现模糊搜索算法，并高效处理维基百科的大数据集（约90GB）。
+        </p>
+    </div>
+
+    <!-- Demo 展示 -->
+    <div class="section">
+        <h2 data-zh="Demo 展示" data-en="Demo Showcase">Demo 展示</h2>
+        <p data-zh="以下是本项目的演示视频，展示了搜索引擎的功能和操作流程。" data-en="Below is the demo video of the project, showcasing the functionality and workflow of the search engine.">
+            以下是本项目的演示视频，展示了搜索引擎的功能和操作流程。
+        </p>
+        <div class="video-container">
+            <video controls>
+                <source src="demo.mp4" type="video/mp4">
+                您的浏览器不支持视频播放。
+            </video>
+        </div>
+    </div>
+
+    <!-- 挑战 -->
+    <div class="section">
+        <h2 data-zh="挑战" data-en="Challenges">挑战</h2>
+        <ul data-zh="
+      <li>数据集庞大（约90GB），直接使用Lucene索引耗时且超出服务器容量。</li>
+      <li>Lucene和BM25搜索算法不原生支持分布式搜索。</li>
+      <li>索引文件分散在不同节点，节点下线会导致集群瘫痪。</li>
+    " data-en="
+      <li>The dataset is massive (~90GB), making it time-consuming to index directly using Lucene and exceeding server capacity.</li>
+      <li>Lucene and BM25 search algorithms do not natively support distributed search.</li>
+      <li>Index files are distributed across different nodes, and node failures can cause cluster downtime.</li>
+    ">
+            <li>数据集庞大（约90GB），直接使用Lucene索引耗时且超出服务器容量。</li>
+            <li>Lucene和BM25搜索算法不原生支持分布式搜索。</li>
+            <li>索引文件分散在不同节点，节点下线会导致集群瘫痪。</li>
+        </ul>
+    </div>
+
+    <!-- 解决方案 -->
+    <div class="section">
+        <h2 data-zh="解决方案" data-en="Solutions">解决方案</h2>
+        <ul data-zh="
+      <li>使用Hadoop的MapReduce进行集群并行处理，提升索引效率并分散存储索引文件。</li>
+      <li>自实现BM25Similarity类，支持分布式搜索结果的合并与汇总。</li>
+      <li>通过索引文件备份提高系统容错性。</li>
+    " data-en="
+      <li>Use Hadoop's MapReduce for parallel processing across the cluster, improving indexing efficiency and distributing index files.</li>
+      <li>Implement a custom BM25Similarity class to support merging and summarizing distributed search results.</li>
+      <li>Enhance system fault tolerance by backing up index files.</li>
+    ">
+            <li>使用Hadoop的MapReduce进行集群并行处理，提升索引效率并分散存储索引文件。</li>
+            <li>自实现BM25Similarity类，支持分布式搜索结果的合并与汇总。</li>
+            <li>通过索引文件备份提高系统容错性。</li>
+        </ul>
+    </div>
+
+    <!-- 交付成果 -->
+    <div class="section">
+        <h2 data-zh="交付成果" data-en="Deliverables">交付成果</h2>
+        <ul data-zh="
+      <li>一个简单的前端，供用户搜索和查看维基百科结果。</li>
+      <li>一个后端，用于查询实现模糊搜索算法的托管解决方案。</li>
+      <li>一个托管解决方案，用于存储整个英文维基百科文本（约80GB）并带有缓存。</li>
+    " data-en="
+      <li>A simple frontend for users to search and view Wikipedia results.</li>
+      <li>A backend that queries the hosting solution implementing the fuzzy search algorithm.</li>
+      <li>A hosting solution to store the entire English Wikipedia text (~80GB) with caching.</li>
+    ">
+            <li>一个简单的前端，供用户搜索和查看维基百科结果。</li>
+            <li>一个后端，用于查询实现模糊搜索算法的托管解决方案。</li>
+            <li>一个托管解决方案，用于存储整个英文维基百科文本（约80GB）并带有缓存。</li>
+        </ul>
+    </div>
+    <!-- 职责 -->
+    <div class="section">
+        <h2 data-zh="我的职责" data-en="My Work">我的职责</h2>
+        <ul data-zh="
+      <li>基于Lucene和BM25算法实现分布式搜索和结果合并方法。</li>
+      <li>基于Hadoop实现分布式索引和存储。</li>
+      <li>基于Javalin实现计算结点间轻量级通信。</li>
+      <li>基于SpringBoot实现网页后端。</li>
+    " data-en="
+        <li>Implemented distributed search and result merging methods based on Lucene and BM25 algorithm.</li>
+        <li>Implemented distributed indexing and storage based on Hadoop.</li>
+        <li>Implemented lightweight communication between computing nodes based on Javalin.</li>
+        <li>Implemented the web backend based on SpringBoot.</li>
+    ">
+            <li>基于Lucene和BM25算法实现分布式搜索和结果合并方法。</li>
+            <li>基于Hadoop实现分布式索引和存储。</li>
+            <li>基于Javalin实现计算结点间轻量级通信。</li>
+            <li>基于SpringBoot实现网页后端。</li>
+        </ul>
+    </div>
+    <!-- 总结 -->
+    <div class="section">
+        <h2 data-zh="总结" data-en="Summary">总结</h2>
+        <p data-zh="本项目通过结合Lucene和Hadoop，成功构建了一个高效的分布式搜索引擎，能够处理维基百科的大规模数据集，并支持模糊搜索功能。通过自实现的BM25Similarity类和索引文件备份，系统具备了良好的容错性和扩展性。未来可以进一步优化搜索算法，提升用户体验。" data-en="By combining Lucene and Hadoop, this project successfully built an efficient distributed search engine capable of handling Wikipedia's large-scale dataset and supporting fuzzy search functionality. With the custom BM25Similarity class and index file backups, the system has good fault tolerance and scalability. Future work could further optimize the search algorithm to enhance user experience.">
+            本项目通过结合Lucene和Hadoop，成功构建了一个高效的分布式搜索引擎，能够处理维基百科的大规模数据集，并支持模糊搜索功能。通过自实现的BM25Similarity类和索引文件备份，系统具备了良好的容错性和扩展性。未来可以进一步优化搜索算法，提升用户体验。
+        </p>
+    </div>
+</div>
+
+<!-- 语言切换脚本 -->
+<script>
+    function switchLanguage(lang) {
+        const elements = document.querySelectorAll('[data-zh], [data-en]');
+        elements.forEach(element => {
+            if (lang === 'zh') {
+                element.innerHTML = element.getAttribute('data-zh');  // 使用 innerHTML 保持 HTML 结构
+            } else if (lang === 'en') {
+                element.innerHTML = element.getAttribute('data-en');
+            }
+        });
+    }
+</script>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
