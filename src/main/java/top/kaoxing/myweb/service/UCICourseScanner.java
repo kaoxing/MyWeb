@@ -60,7 +60,7 @@ public class UCICourseScanner {
 
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
         map.add("Submit", "Display Web Results");
-        map.add("YearTerm", "2025-03");
+        map.add("YearTerm", "2025-14");
         map.add("CourseCodes", courseCode);
         map.add("InstrName", "");
 
@@ -69,14 +69,14 @@ public class UCICourseScanner {
         String response = restTemplate.postForObject(url, request, String.class);
 
         if (response != null) {
-            System.out.println(response.contains("FULL"));
+            //System.out.println(response.contains("FULL"));
         }else{
             throw new RuntimeException("Failed to scan course");
         }
 
         String status = response.contains("FULL") ? "FULL" : "OPEN";
 
-        System.out.println(courseCode + " " + status);
+        //System.out.println(courseCode + " " + status);
 
         return status;
 

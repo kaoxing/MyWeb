@@ -41,7 +41,6 @@ public class MinesweeperRemoteServer {
 
         Map<String, Object> map = Map.of("board_size", boardSize, "num_mines", numOfMines, "token", token);
 
-
         return restTemplate.postForObject(url+create, map, Map.class);
     }
 

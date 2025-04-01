@@ -13,9 +13,30 @@
         Minesweeper
     </div>
     <div class="main">
+        <!-- 新增游戏说明 -->
+        <div class="game-instructions">
+            <h2>游戏说明 / Instructions</h2>
+            <p>欢迎来到扫雷游戏！以下是游戏玩法说明：</p>
+            <p>Welcome to Minesweeper! Here are the instructions:</p>
+            <ul>
+                <li><strong>普通模式</strong>：点击格子即可揭开格子，如果揭开的是地雷，游戏结束。</li>
+                <li><strong>Normal Mode</strong>: Click on a cell to reveal it. If it's a mine, the game ends.</li>
+                <li><strong>AI模式 / AI Mode</strong>：</li>
+                <ul>
+                    <li><strong>AI Agent</strong>：点击“AI Agent”按钮，将使用基于Pytorch的<strong>深度强化学习AI</strong>自动玩扫雷游戏。</li>
+                    <li><strong>AI Agent</strong>: Click the "AI Agent" button to use a <strong>deep reinforcement learning AI</strong> based on Pytorch to play the game automatically.</li>
+                    <li><strong>LLM Agent</strong>：点击“LLM Agent”按钮，将调用<strong>阿里的qwen-max模型</strong>来玩扫雷游戏。</li>
+                    <li><strong>LLM Agent</strong>: Click the "LLM Agent" button to use <strong>Alibaba's qwen-max model</strong> to play the game.</li>
+                </ul>
+                <li>设置棋盘大小和地雷数量后，点击“Start Game”开始游戏。</li>
+                <li>Set the board size and number of mines, then click "Start Game" to begin.</li>
+                <li>点击“Reset Game”可以重置当前游戏。</li>
+                <li>Click "Reset Game" to reset the current game.</li>
+            </ul>
+        </div>
         <div class="game-controls">
             <input type="number" v-model="boardSize" min="1" max="9" placeholder="Board Size">
-            <input type="number" v-model="numMines" min="1" max="10" placeholder="Mines">
+            <input type="number" v-model="numMines" min="1" max="9" placeholder="Mines">
             <button @click="startGame">Start Game</button>
             <button v-if="gameStarted" @click="resetGame">Reset Game</button>
             <button v-if="gameStarted" @click="agentReveal">AI Agent</button>

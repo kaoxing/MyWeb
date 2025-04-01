@@ -97,3 +97,38 @@ body {
     border-radius: 0 0 5px 5px;
     margin-top: 20px;
 }
+
+/* 新增的游戏说明样式 */
+.game-instructions {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #3d3d3d; /* 暗色背景 */
+    border: 1px solid #555555; /* 暗色边框 */
+    border-radius: 5px;
+    color: #ffffff; /* 浅色文字 */
+}
+
+.game-instructions h2 {
+    margin-top: 0;
+    font-size: 20px;
+    color: #ffffff; /* 浅色标题 */
+}
+
+.game-instructions p {
+    margin: 10px 0;
+}
+
+.game-instructions ul {
+    padding-left: 20px;
+    list-style-type: square; /* 使用方块作为列表符号 */
+    color: #ffffff; /* 浅色文字 */
+}
+
+.game-instructions ul ul {
+    list-style-type: circle; /* 二级列表使用圆圈符号 */
+    margin-top: 5px;
+}
+
+.game-instructions strong {
+    color: #ffcc00; /* 强调文字使用亮黄色 */
+}

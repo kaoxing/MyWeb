@@ -2,12 +2,12 @@ new Vue({
     el: '#app',
     data() {
         return {
-            boardSize: '',
-            numMines: '',
+            boardSize: '6',
+            numMines: '6',
             board: [],
             gameStarted: false,
-            //apiBaseUrl: 'https://web.kaoxing.top/minesweeper',
-            apiBaseUrl: 'http://localhost/minesweeper',
+            apiBaseUrl: 'https://web.kaoxing.top/minesweeper',
+            // apiBaseUrl: 'http://localhost/minesweeper',
             token: '',
         };
     },
@@ -49,9 +49,9 @@ new Vue({
             }
         },
         async agentReveal() {
-            if(this.boardSize > 7 || this.boardSize< 3 ){
-                alert('Sorry, due to the cpu limitation of server, only when the board size is between 3 and 7, you can ' +
-                    'request AI to play the game：） | 抱歉，目前服务器的算力不允许处理大于7或小于3的棋盘大小哦：）');
+            if(this.boardSize > 6 || this.boardSize< 3 ){
+                alert('Sorry, due to the cpu limitation of server, only when the board size is between 3 and 6, you can ' +
+                    'request AI to play the game：） | 抱歉，目前服务器的算力不允许处理大于6或小于3的棋盘大小哦：）');
                 return;
             }
             try {
